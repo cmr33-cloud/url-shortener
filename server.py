@@ -62,15 +62,19 @@ def url_shortener():
     else:
         return render_template('shorten.html', shorten_url="")
 
-@app.route('/<userURL>')
+@app.route('/<userURL>',methods=['GET'])
 def redirect(userURL):
     long_url = url.query.filter_by(shortened_url=userURL).first()
     # print(f"long url {long_url.url}")
     if long_url:
-         return redirect("https://www.google.com"), 302
+        print(f"long url: {long_url.url}")
+        return redirect("https://www.google.com")
         # return redirect(long_url.url)
+        # return "here we are"
     else:
+        print("after else")
         return "not found"
+        
 
     # all_url = url.query.all()
     # for urls in all_url:
