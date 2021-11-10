@@ -2,10 +2,10 @@ from flask import Flask, render_template,request, redirect, url_for
 import pyshorteners
 import random
 from flask_sqlalchemy import SQLAlchemy
-
-
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 
 #needed to use the sqlalchemy - url is the table name
 app.config["SQLALCHEMY_DATABASE_URI"] = 'sqlite:///url.db'
@@ -58,29 +58,24 @@ def url_shortener():
         new_url = url(url=user_url,shortened_url=shorten_url)
         db.session.add(new_url)
         db.session.commit()
-        return render_template('shorten.html', shorten_url = shorten_url)
+        return render_template('shorten.html', shorten_url = "http://127.0.0.1:5000/"+shorten_url)
     else:
         return render_template('shorten.html', shorten_url="")
 
 @app.route('/<userURL>',methods=['GET'])
-def redirect(userURL):
+def redirect_newurl(userURL):
     long_url = url.query.filter_by(shortened_url=userURL).first()
     # print(f"long url {long_url.url}")
     if long_url:
         print(f"long url: {long_url.url}")
-        return redirect("https://www.google.com")
-        # return redirect(long_url.url)
-        # return "here we are"
+        url_http = "https://" + long_url.url
+        return redirect(url_http)
+        
     else:
         print("after else")
         return "not found"
         
-
-    # all_url = url.query.all()
-    # for urls in all_url:
-    #     return f"{urls.url} and {urls.shortened_url}"
     
 
 if __name__ == '__main__':
-    # db.create_all()
     app.run(debug=True)

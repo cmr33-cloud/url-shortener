@@ -4,17 +4,13 @@
   <body>
     <h1>Welcome to URL shortener!</h1>
     <form ACTION='/' method='POST' id = "theform" >
-      <input type="text" name="url" placeholder="Input url here..." />
+      <input type="text" name="url" placeholder="e.g. youtube.com" />
       <input type="submit" value="Submit">   
     </form> 
-    <p id = "display">The shortened url for your url is : {{shorten_url}}</p>
+    <p id = "display">Your url is : <a id="linkhere">{{shorten_url}}</a></p>
   </body>
  <script>
-  //  function onsubmit(e){
-  //   //  e.preventDefault();
-  //    display.hidden=false
-  //   }
-  //    theform.addEventListener("submit", onsubmit)
+linkhere.href = linkhere.textContent
   </script>
   </html>
 </html>

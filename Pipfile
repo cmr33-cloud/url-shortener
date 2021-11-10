@@ -8,6 +8,7 @@ flask = "*"
 pyshorteners = "*"
 sqlalchemy = "*"
 flask-sqlalchemy = "*"
+flask-cors = "*"
 
 [dev-packages]
 
