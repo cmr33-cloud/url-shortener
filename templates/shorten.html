@@ -3,9 +3,18 @@
   <head></head>
   <body>
     <h1>Welcome to URL shortener!</h1>
-    <form>
-      <input type="text" value="Input url here..." />
-      <input type="submit" value="Submit">
-    </form>
+    <form ACTION='/shorten' method='POST' id = "theform" >
+      <input type="text" name="url" placeholder="Input url here..." />
+      <input type="submit" value="Submit">   
+    </form> 
+    <p id = "display">The shortened url for your url is : {{shorten_url}}</p>
   </body>
+ <script>
+  //  function onsubmit(e){
+  //   //  e.preventDefault();
+  //    display.hidden=false
+  //   }
+  //    theform.addEventListener("submit", onsubmit)
+  </script>
+  </html>
 </html>

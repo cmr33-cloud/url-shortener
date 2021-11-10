@@ -5,6 +5,8 @@ name = "pypi"
 
 [packages]
 flask = "*"
+pyshorteners = "*"
+sqlalchemy = "*"
 
 [dev-packages]
 
